@@ -2,9 +2,13 @@
 import { motion } from 'motion/react';
 import { ProductCard } from './ProductCard';
 import Link from 'next/link';
-import { products } from '@/lib/data';
+import { Product } from '@/lib/data';
 
-export function ProductsSection() {
+interface ProductsSectionProps {
+  products: Product[];
+}
+
+export function ProductsSection({ products }: ProductsSectionProps) {
   return (
     <section id="colecoes" className="relative py-24 px-6">
       {/* Background */}

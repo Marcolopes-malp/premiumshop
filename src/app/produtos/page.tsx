@@ -1,9 +1,11 @@
-import { products } from '@/lib/data';
+import { getProducts } from '@/lib/data';
 import { ProductCard } from '../components/ProductCard';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 
-export default function ProdutosPage() {
+export default async function ProdutosPage() {
+  const products = await getProducts();
+
   return (
     <main className="min-h-screen bg-black">
       <Navbar />

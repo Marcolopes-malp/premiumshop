@@ -1,10 +1,11 @@
 import { notFound } from 'next/navigation';
-import { getProductBySlug, products } from '@/lib/data';
+import { getProductBySlug, getProducts } from '@/lib/data';
 import { Navbar } from '@/app/components/Navbar';
 import { Footer } from '@/app/components/Footer';
 import { ProdutoClient } from '@/app/components/ProdutoClient';
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
+  const products = await getProducts();
   return products.map((product) => ({
     slug: product.slug,
   }));
@@ -12,7 +13,7 @@ export function generateStaticParams() {
 
 export default async function ProdutoPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;
-  const product = getProductBySlug(resolvedParams.slug);
+  const product = await getProductBySlug(resolvedParams.slug);
 
   if (!product) {
     notFound();

@@ -7,8 +7,11 @@ import { ExclusiveAccessBanner } from './components/ExclusiveAccessBanner';
 import { NewCollectionSection } from './components/NewCollectionSection';
 import { LookbookSection } from './components/LookbookSection';
 import { Footer } from './components/Footer';
+import { getProducts } from '@/lib/data';
 
-export default function App() {
+export default async function App() {
+  const products = await getProducts();
+
   return (
     <div className="relative min-h-screen bg-black text-white overflow-x-hidden">
       {/* Particles Background Effect */}
@@ -19,7 +22,7 @@ export default function App() {
         <Navbar />
         <HeroSection />
         <FeaturesSection />
-        <ProductsSection />
+        <ProductsSection products={products} />
         <ExclusiveAccessBanner />
         <NewCollectionSection />
         <LookbookSection />
