@@ -1,81 +1,181 @@
 [
   {
-    "id": "1",
-    "slug": "obsidian-jacket",
-    "name": "Obsidian Jacket",
-    "category": "CASACOS",
-    "price": 399,
-    "image": "https://images.unsplash.com/photo-1727515546577-f7d82a47b51d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBibGFjayUyMGphY2tldCUyMGRlc2lnbmVyfGVufDF8fHx8MTc4MTA0NTI5MXww&ixlib=rb-4.1.0&q=80&w=1080",
+    "id": "fs-1",
+    "slug": "fjallraven-foldsack-no-1-backpack-fits-15-laptops",
+    "name": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+    "category": "MASCULINO",
+    "price": 549.75,
+    "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_t.png",
     "images": [
-      "https://images.unsplash.com/photo-1727515546577-f7d82a47b51d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBibGFjayUyMGphY2tldCUyMGRlc2lnbmVyfGVufDF8fHx8MTc4MTA0NTI5MXww&ixlib=rb-4.1.0&q=80&w=1080",
-      "https://images.unsplash.com/photo-1551028719-00167b16eac5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsZWF0aGVyJTIwamFja2V0fGVufDF8fHx8MTc4MTA1MjkxMHww&ixlib=rb-4.1.0&q=80&w=1080"
+      "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_t.png"
     ],
-    "description": "A Obsidian Jacket redefine o conceito de agasalho de luxo. Construída com tecidos italianos de alta durabilidade e um design minimalista marcante, esta peça é perfeita para noites frias onde o estilo não pode ser comprometido.",
+    "description": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
     "sizes": [
       "P",
       "M",
-      "G",
-      "GG"
+      "G"
     ],
     "inStock": true
   },
   {
-    "id": "2",
-    "slug": "midnight-hoodie",
-    "name": "Midnight Hoodie",
-    "category": "STREETWEAR",
-    "price": 249,
-    "image": "https://images.unsplash.com/photo-1564557287817-3785e38ec1f5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcmVtaXVtJTIwZmFzaGlvbiUyMGhvb2RpZSUyMHN0cmVldHdlYXJ8ZW58MXx8fHwxNzgxMDQ1MjkxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+    "id": "fs-2",
+    "slug": "mens-casual-premium-slim-fit-t-shirts",
+    "name": "Mens Casual Premium Slim Fit T-Shirts ",
+    "category": "MASCULINO",
+    "price": 111.5,
+    "image": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_t.png",
     "images": [
-      "https://images.unsplash.com/photo-1564557287817-3785e38ec1f5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcmVtaXVtJTIwZmFzaGlvbiUyMGhvb2RpZSUyMHN0cmVldHdlYXJ8ZW58MXx8fHwxNzgxMDQ1MjkxfDA&ixlib=rb-4.1.0&q=80&w=1080"
+      "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_t.png"
     ],
-    "description": "O Midnight Hoodie é a essência do conforto elevado. Feito com algodão egípcio de altíssima gramatura, oferece um caimento impecável e um toque incrivelmente macio. O design escuro profundo garante versatilidade para qualquer ocasião urbana.",
+    "description": "Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.",
     "sizes": [
       "P",
       "M",
-      "G",
-      "GG"
+      "G"
     ],
     "inStock": true
   },
   {
-    "id": "3",
-    "slug": "noir-edition-sneakers",
-    "name": "Noir Edition Sneakers",
-    "category": "CALÇADOS",
-    "price": 899,
-    "image": "https://images.unsplash.com/photo-1771775735982-8fb350cec7a1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkZXNpZ25lciUyMHNob2VzJTIwbHV4dXJ5JTIwYnJhbmR8ZW58MXx8fHwxNzgxMDQ1MjkxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+    "id": "fs-3",
+    "slug": "mens-cotton-jacket",
+    "name": "Mens Cotton Jacket",
+    "category": "MASCULINO",
+    "price": 279.95,
+    "image": "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_t.png",
     "images": [
-      "https://images.unsplash.com/photo-1771775735982-8fb350cec7a1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkZXNpZ25lciUyMHNob2VzJTIwbHV4dXJ5JTIwYnJhbmR8ZW58MXx8fHwxNzgxMDQ1MjkxfDA&ixlib=rb-4.1.0&q=80&w=1080"
+      "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_t.png"
     ],
-    "description": "O Noir Edition Sneakers combina o conforto do streetwear moderno com a silhueta sofisticada do luxo. Fabricado com couro premium, possui detalhes reflexivos discretos e uma sola projetada para durabilidade e leveza suprema.",
+    "description": "great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions, such as working, hiking, camping, mountain/rock climbing, cycling, traveling or other outdoors. Good gift choice for you or your family member. A warm hearted love to Father, husband or son in this thanksgiving or Christmas Day.",
     "sizes": [
-      "38",
-      "39",
-      "40",
-      "41",
-      "42",
-      "43"
-    ],
-    "inStock": true
-  },
-  {
-    "id": "4",
-    "slug": "shadow-ensemble",
-    "name": "Shadow Ensemble",
-    "category": "CONJUNTO PREMIUM",
-    "price": 1199.99,
-    "image": "https://images.unsplash.com/photo-1603189343302-e603f7add05a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoaWdoJTIwZmFzaGlvbiUyMGRhcmslMjBjbG90aGluZyUyMGVkaXRvcmlhbHxlbnwxfHx8fDE3ODEwNDUyOTB8MA&ixlib=rb-4.1.0&q=80&w=1080",
-    "images": [
-      "https://images.unsplash.com/photo-1603189343302-e603f7add05a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoaWdoJTIwZmFzaGlvbiUyMGRhcmslMjBjbG90aGluZyUyMGVkaXRvcmlhbHxlbnwxfHx8fDE3ODEwNDUyOTB8MA&ixlib=rb-4.1.0&q=80&w=1080"
-    ],
-    "description": "Para quem busca uma declaração completa de estilo, o Shadow Ensemble é o ápice da nossa coleção. Um conjunto perfeitamente harmonizado que transmite autoridade, poder e mistério. Edição extremamente limitada.",
-    "sizes": [
+      "P",
       "M",
-      "G",
-      "GG",
-      "38",
-      "39"
+      "G"
+    ],
+    "inStock": true
+  },
+  {
+    "id": "fs-4",
+    "slug": "mens-casual-slim-fit",
+    "name": "Mens Casual Slim Fit",
+    "category": "MASCULINO",
+    "price": 79.95,
+    "image": "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_t.png",
+    "images": [
+      "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_t.png"
+    ],
+    "description": "The color could be slightly different between on the screen and in practice. / Please note that body builds vary by person, therefore, detailed size information should be reviewed below on the product description.",
+    "sizes": [
+      "P",
+      "M",
+      "G"
+    ],
+    "inStock": true
+  },
+  {
+    "id": "fs-15",
+    "slug": "biylaclesen-women-s-3-in-1-snowboard-jacket-winter-coats",
+    "name": "BIYLACLESEN Women's 3-in-1 Snowboard Jacket Winter Coats",
+    "category": "FEMININO",
+    "price": 284.95,
+    "image": "https://fakestoreapi.com/img/51Y5NI-I5jL._AC_UX679_t.png",
+    "images": [
+      "https://fakestoreapi.com/img/51Y5NI-I5jL._AC_UX679_t.png"
+    ],
+    "description": "Note:The Jackets is US standard size, Please choose size as your usual wear Material: 100% Polyester; Detachable Liner Fabric: Warm Fleece. Detachable Functional Liner: Skin Friendly, Lightweigt and Warm.Stand Collar Liner jacket, keep you warm in cold weather. Zippered Pockets: 2 Zippered Hand Pockets, 2 Zippered Pockets on Chest (enough to keep cards or keys)and 1 Hidden Pocket Inside.Zippered Hand Pockets and Hidden Pocket keep your things secure. Humanized Design: Adjustable and Detachable Hood and Adjustable cuff to prevent the wind and water,for a comfortable fit. 3 in 1 Detachable Design provide more convenience, you can separate the coat and inner as needed, or wear it together. It is suitable for different season and help you adapt to different climates",
+    "sizes": [
+      "P",
+      "M",
+      "G"
+    ],
+    "inStock": true
+  },
+  {
+    "id": "fs-16",
+    "slug": "lock-and-love-women-s-removable-hooded-faux-leather-moto-biker-jacket",
+    "name": "Lock and Love Women's Removable Hooded Faux Leather Moto Biker Jacket",
+    "category": "FEMININO",
+    "price": 149.75,
+    "image": "https://fakestoreapi.com/img/81XH0e8fefL._AC_UY879_t.png",
+    "images": [
+      "https://fakestoreapi.com/img/81XH0e8fefL._AC_UY879_t.png"
+    ],
+    "description": "100% POLYURETHANE(shell) 100% POLYESTER(lining) 75% POLYESTER 25% COTTON (SWEATER), Faux leather material for style and comfort / 2 pockets of front, 2-For-One Hooded denim style faux leather jacket, Button detail on waist / Detail stitching at sides, HAND WASH ONLY / DO NOT BLEACH / LINE DRY / DO NOT IRON",
+    "sizes": [
+      "P",
+      "M",
+      "G"
+    ],
+    "inStock": true
+  },
+  {
+    "id": "fs-17",
+    "slug": "rain-jacket-women-windbreaker-striped-climbing-raincoats",
+    "name": "Rain Jacket Women Windbreaker Striped Climbing Raincoats",
+    "category": "FEMININO",
+    "price": 199.95000000000002,
+    "image": "https://fakestoreapi.com/img/71HblAHs5xL._AC_UY879_-2t.png",
+    "images": [
+      "https://fakestoreapi.com/img/71HblAHs5xL._AC_UY879_-2t.png"
+    ],
+    "description": "Lightweight perfet for trip or casual wear---Long sleeve with hooded, adjustable drawstring waist design. Button and zipper front closure raincoat, fully stripes Lined and The Raincoat has 2 side pockets are a good size to hold all kinds of things, it covers the hips, and the hood is generous but doesn't overdo it.Attached Cotton Lined Hood with Adjustable Drawstrings give it a real styled look.",
+    "sizes": [
+      "P",
+      "M",
+      "G"
+    ],
+    "inStock": true
+  },
+  {
+    "id": "fs-18",
+    "slug": "mbj-women-s-solid-short-sleeve-boat-neck-v",
+    "name": "MBJ Women's Solid Short Sleeve Boat Neck V ",
+    "category": "FEMININO",
+    "price": 49.25,
+    "image": "https://fakestoreapi.com/img/71z3kpMAYsL._AC_UY879_t.png",
+    "images": [
+      "https://fakestoreapi.com/img/71z3kpMAYsL._AC_UY879_t.png"
+    ],
+    "description": "95% RAYON 5% SPANDEX, Made in USA or Imported, Do Not Bleach, Lightweight fabric with great stretch for comfort, Ribbed on sleeves and neckline / Double stitching on bottom hem",
+    "sizes": [
+      "P",
+      "M",
+      "G"
+    ],
+    "inStock": true
+  },
+  {
+    "id": "fs-19",
+    "slug": "opna-women-s-short-sleeve-moisture",
+    "name": "Opna Women's Short Sleeve Moisture",
+    "category": "FEMININO",
+    "price": 39.75,
+    "image": "https://fakestoreapi.com/img/51eg55uWmdL._AC_UX679_t.png",
+    "images": [
+      "https://fakestoreapi.com/img/51eg55uWmdL._AC_UX679_t.png"
+    ],
+    "description": "100% Polyester, Machine wash, 100% cationic polyester interlock, Machine Wash & Pre Shrunk for a Great Fit, Lightweight, roomy and highly breathable with moisture wicking fabric which helps to keep moisture away, Soft Lightweight Fabric with comfortable V-neck collar and a slimmer fit, delivers a sleek, more feminine silhouette and Added Comfort",
+    "sizes": [
+      "P",
+      "M",
+      "G"
+    ],
+    "inStock": true
+  },
+  {
+    "id": "fs-20",
+    "slug": "danvouy-womens-t-shirt-casual-cotton-short",
+    "name": "DANVOUY Womens T Shirt Casual Cotton Short",
+    "category": "FEMININO",
+    "price": 64.95,
+    "image": "https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_t.png",
+    "images": [
+      "https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_t.png"
+    ],
+    "description": "95%Cotton,5%Spandex, Features: Casual, Short Sleeve, Letter Print,V-Neck,Fashion Tees, The fabric is soft and has some stretch., Occasion: Casual/Office/Beach/School/Home/Street. Season: Spring,Summer,Autumn,Winter.",
+    "sizes": [
+      "P",
+      "M",
+      "G"
     ],
     "inStock": true
   }

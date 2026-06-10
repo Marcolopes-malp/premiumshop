@@ -1,5 +1,6 @@
 import { Package } from 'lucide-react';
 import { getProducts } from '@/lib/data';
+import { SeedButton } from './components/SeedButton';
 
 export default async function AdminDashboardPage() {
   const products = await getProducts();
@@ -8,9 +9,12 @@ export default async function AdminDashboardPage() {
 
   return (
     <div className="max-w-5xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <div>
-        <h1 className="text-3xl font-bold tracking-wider">Dashboard</h1>
-        <p className="text-gray-400 mt-2">Visão geral da sua loja premium.</p>
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div>
+          <h1 className="text-3xl font-bold tracking-wider">Dashboard</h1>
+          <p className="text-gray-400 mt-2">Visão geral da sua loja premium.</p>
+        </div>
+        <SeedButton />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -53,3 +57,4 @@ export default async function AdminDashboardPage() {
     </div>
   );
 }
+
