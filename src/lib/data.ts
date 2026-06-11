@@ -1,18 +1,5 @@
-export interface Product {
-  id: string;
-  slug: string;
-  name: string;
-  category: string;
-  price: number;
-  image: string;
-  images: string[];
-  description: string;
-  sizes: string[];
-  inStock: boolean;
-}
-
-import fs from 'fs';
-import path from 'path';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '@/lib/firebase';
 
 export interface Product {
   id: string;
@@ -27,15 +14,19 @@ export interface Product {
   inStock: boolean;
 }
 
-const dataFilePath = path.join(process.cwd(), 'data', 'products.json');
-
-// Read products from the JSON file
 export async function getProducts(): Promise<Product[]> {
   try {
-    const fileContents = await fs.promises.readFile(dataFilePath, 'utf8');
-    return JSON.parse(fileContents) as Product[];
+    const productsRef = collection(db, 'products');
+    const snapshot = await getDocs(productsRef);
+    const products: Product[] = [];
+    
+    snapshot.forEach(doc => {
+      products.push({ id: doc.id, ...doc.data() } as Product);
+    });
+
+    return products;
   } catch (error) {
-    console.error('Error reading products:', error);
+    console.error('Error fetching products from Firestore:', error);
     return [];
   }
 }
@@ -44,3 +35,4 @@ export async function getProductBySlug(slug: string): Promise<Product | undefine
   const products = await getProducts();
   return products.find(p => p.slug === slug);
 }
+

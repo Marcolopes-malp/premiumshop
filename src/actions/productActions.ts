@@ -1,106 +1,82 @@
 'use server';
 
-import fs from 'fs';
-import path from 'path';
 import { revalidatePath } from 'next/cache';
 import { Product } from '@/lib/data';
-
-const dataFilePath = path.join(process.cwd(), 'data', 'products.json');
-
-function getProductsArray(): Product[] {
-  try {
-    const fileContents = fs.readFileSync(dataFilePath, 'utf8');
-    return JSON.parse(fileContents) as Product[];
-  } catch (error) {
-    console.error('Error reading products:', error);
-    return [];
-  }
-}
-
-function saveProductsArray(products: Product[]) {
-  try {
-    fs.writeFileSync(dataFilePath, JSON.stringify(products, null, 2), 'utf8');
-  } catch (error) {
-    console.error('Error writing products:', error);
-  }
-}
+import { db } from '@/lib/firebase';
+import { collection, doc, setDoc, updateDoc, deleteDoc, getDocs } from 'firebase/firestore';
+import fs from 'fs';
+import path from 'path';
 
 export async function createProduct(productData: Omit<Product, 'id' | 'slug'>) {
-  const products = getProductsArray();
-  
-  // Generate a basic slug from the name
-  const slug = productData.name
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/(^-|-$)+/g, '');
-
-  // Generate a unique ID
-  const id = Date.now().toString();
-
-  const newProduct: Product = {
-    ...productData,
-    id,
-    slug,
-  };
-
-  products.push(newProduct);
-  saveProductsArray(products);
-
-  revalidatePath('/');
-  revalidatePath('/produtos');
-  revalidatePath('/admin/produtos');
-
-  return { success: true, product: newProduct };
-}
-
-export async function updateProduct(id: string, productData: Partial<Product>) {
-  const products = getProductsArray();
-  const index = products.findIndex(p => p.id === id);
-
-  if (index === -1) {
-    return { success: false, error: 'Product not found' };
-  }
-
-  // If name changed, update slug
-  let slug = products[index].slug;
-  if (productData.name && productData.name !== products[index].name) {
-    slug = productData.name
+  try {
+    const slug = productData.name
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/(^-|-$)+/g, '');
+
+    const newDocRef = doc(collection(db, 'products'));
+    const id = newDocRef.id;
+
+    const newProduct: Product = {
+      ...productData,
+      id,
+      slug,
+    };
+
+    await setDoc(newDocRef, newProduct);
+
+    revalidatePath('/');
+    revalidatePath('/produtos');
+    revalidatePath('/admin/produtos');
+
+    return { success: true, product: newProduct };
+  } catch (error) {
+    console.error('Error creating product:', error);
+    throw new Error('Failed to create product');
   }
+}
 
-  products[index] = {
-    ...products[index],
-    ...productData,
-    slug,
-  };
+export async function updateProduct(id: string, productData: Partial<Product>) {
+  try {
+    const docRef = doc(db, 'products', id);
+    
+    // If name changed, we should ideally update slug, but for simplicity let's handle it
+    let updatePayload = { ...productData };
+    
+    if (productData.name) {
+      updatePayload.slug = productData.name
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/(^-|-$)+/g, '');
+    }
 
-  saveProductsArray(products);
+    await updateDoc(docRef, updatePayload);
 
-  revalidatePath('/');
-  revalidatePath('/produtos');
-  revalidatePath(`/produto/${slug}`);
-  revalidatePath('/admin/produtos');
+    revalidatePath('/');
+    revalidatePath('/produtos');
+    revalidatePath(`/produto/${updatePayload.slug || ''}`);
+    revalidatePath('/admin/produtos');
 
-  return { success: true, product: products[index] };
+    return { success: true };
+  } catch (error) {
+    console.error('Error updating product:', error);
+    throw new Error('Failed to update product');
+  }
 }
 
 export async function deleteProduct(id: string) {
-  const products = getProductsArray();
-  const filteredProducts = products.filter(p => p.id !== id);
+  try {
+    await deleteDoc(doc(db, 'products', id));
 
-  if (products.length === filteredProducts.length) {
-    return { success: false, error: 'Product not found' };
+    revalidatePath('/');
+    revalidatePath('/produtos');
+    revalidatePath('/admin/produtos');
+
+    return { success: true };
+  } catch (error) {
+    console.error('Error deleting product:', error);
+    throw new Error('Failed to delete product');
   }
-
-  saveProductsArray(filteredProducts);
-
-  revalidatePath('/');
-  revalidatePath('/produtos');
-  revalidatePath('/admin/produtos');
-
-  return { success: true };
 }
 
 export async function seedFromFakeStore() {
@@ -112,14 +88,16 @@ export async function seedFromFakeStore() {
       p.category === "men's clothing" || p.category === "women's clothing"
     );
 
-    const products = getProductsArray();
+    // Get current products to avoid duplicates
+    const snapshot = await getDocs(collection(db, 'products'));
+    const existingIds = snapshot.docs.map(d => d.id);
 
     let addedCount = 0;
 
     for (const fp of clothingProducts) {
       const fsId = `fs-${fp.id}`;
-      // Check if already exists
-      if (!products.some(p => p.id === fsId)) {
+      
+      if (!existingIds.includes(fsId)) {
         const slug = fp.title
           .toLowerCase()
           .replace(/[^a-z0-9]+/g, '-')
@@ -130,7 +108,7 @@ export async function seedFromFakeStore() {
           slug,
           name: fp.title,
           category: fp.category === "men's clothing" ? 'MASCULINO' : 'FEMININO',
-          price: fp.price * 5, // Convert to BRL somewhat realistically
+          price: fp.price * 5, 
           image: fp.image,
           images: [fp.image],
           description: fp.description,
@@ -138,13 +116,12 @@ export async function seedFromFakeStore() {
           inStock: true,
         };
 
-        products.push(newProduct);
+        await setDoc(doc(db, 'products', fsId), newProduct);
         addedCount++;
       }
     }
 
     if (addedCount > 0) {
-      saveProductsArray(products);
       revalidatePath('/');
       revalidatePath('/produtos');
       revalidatePath('/admin/produtos');
@@ -154,5 +131,33 @@ export async function seedFromFakeStore() {
   } catch (error) {
     console.error('Error seeding from FakeStore:', error);
     return { success: false, error: 'Failed to fetch from FakeStoreAPI' };
+  }
+}
+
+// Temporary function to migrate local JSON to Firestore
+export async function migrateJsonToFirestore() {
+  try {
+    const dataFilePath = path.join(process.cwd(), 'data', 'products.json');
+    if (!fs.existsSync(dataFilePath)) {
+      return { success: false, error: 'products.json not found' };
+    }
+    
+    const fileContents = fs.readFileSync(dataFilePath, 'utf8');
+    const products: Product[] = JSON.parse(fileContents);
+    
+    let count = 0;
+    for (const p of products) {
+      await setDoc(doc(db, 'products', p.id), p);
+      count++;
+    }
+    
+    revalidatePath('/');
+    revalidatePath('/produtos');
+    revalidatePath('/admin/produtos');
+    
+    return { success: true, count };
+  } catch (error) {
+    console.error('Error migrating data:', error);
+    return { success: false, error: 'Migration failed' };
   }
 }

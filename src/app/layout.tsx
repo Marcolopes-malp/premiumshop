@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import '../styles/index.css'
 import { Toaster } from 'sonner'
 import { CartSidebar } from './components/CartSidebar'
+import { AuthProvider } from '@/contexts/AuthContext'
 
 export const metadata: Metadata = {
   title: 'Template de Roupas de Luxo',
@@ -16,10 +17,13 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body>
-        {children}
-        <CartSidebar />
-        <Toaster theme="dark" position="bottom-right" />
+        <AuthProvider>
+          {children}
+          <CartSidebar />
+          <Toaster theme="dark" position="bottom-right" />
+        </AuthProvider>
       </body>
     </html>
   )
 }
+

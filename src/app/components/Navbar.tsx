@@ -4,6 +4,8 @@ import { motion } from 'motion/react';
 import { toast } from 'sonner';
 import { useCartStore } from '@/store/cartStore';
 
+import Link from 'next/link';
+
 export function Navbar() {
   const { openCart, items } = useCartStore();
   const cartItemCount = items.reduce((acc, item) => acc + item.quantity, 0);
@@ -30,12 +32,14 @@ export function Navbar() {
         <div className="backdrop-blur-md bg-black/20 border border-white/10 rounded-2xl px-6 py-4 shadow-2xl">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="text-2xl font-bold tracking-[0.3em] text-white"
-            >
-              SHOFERS
-            </motion.div>
+            <Link href="/">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                className="text-2xl font-bold tracking-[0.3em] text-white"
+              >
+                SHOFERS
+              </motion.div>
+            </Link>
 
             {/* Navigation Links - Desktop */}
             <div className="hidden md:flex items-center gap-8">
@@ -62,14 +66,15 @@ export function Navbar() {
               >
                 <Search className="w-5 h-5" />
               </motion.button>
-              <motion.button
-                onClick={() => toast('Área de login em breve!')}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                className="text-[#B8B8B8] hover:text-white transition-colors"
-              >
-                <User className="w-5 h-5" />
-              </motion.button>
+              <Link href="/login">
+                <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="text-[#B8B8B8] hover:text-white transition-colors flex items-center justify-center"
+                >
+                  <User className="w-5 h-5" />
+                </motion.button>
+              </Link>
               <motion.button
                 onClick={openCart}
                 whileHover={{ scale: 1.1 }}

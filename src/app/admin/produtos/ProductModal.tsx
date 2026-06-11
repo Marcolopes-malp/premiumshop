@@ -3,8 +3,11 @@
 import { useState, useEffect } from 'react';
 import { Product } from '@/lib/data';
 import { createProduct, updateProduct } from '@/actions/productActions';
-import { X } from 'lucide-react';
+import { X, UploadCloud } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { storage } from '@/lib/firebase';
+import { toast } from 'sonner';
 
 interface ProductModalProps {
   isOpen: boolean;
@@ -15,6 +18,7 @@ interface ProductModalProps {
 export function ProductModal({ isOpen, onClose, productToEdit }: ProductModalProps) {
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     category: '',
@@ -54,21 +58,48 @@ export function ProductModal({ isOpen, onClose, productToEdit }: ProductModalPro
 
   if (!isOpen) return null;
 
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setIsUploading(true);
+    try {
+      const storageRef = ref(storage, `products/${Date.now()}_${file.name}`);
+      const snapshot = await uploadBytes(storageRef, file);
+      const downloadURL = await getDownloadURL(snapshot.ref);
+      
+      setFormData(prev => ({ ...prev, image: downloadURL, images: [downloadURL] }));
+      toast.success('Imagem enviada com sucesso!');
+    } catch (error) {
+      console.error('Erro ao fazer upload da imagem:', error);
+      toast.error('Erro ao fazer upload da imagem.');
+    } finally {
+      setIsUploading(false);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!formData.image) {
+      toast.error('É obrigatório adicionar uma imagem do produto.');
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
       if (productToEdit) {
         await updateProduct(productToEdit.id, formData);
+        toast.success('Produto atualizado!');
       } else {
         await createProduct(formData);
+        toast.success('Produto criado!');
       }
       onClose();
       router.refresh();
     } catch (error) {
       console.error('Error saving product:', error);
-      alert('Erro ao salvar produto.');
+      toast.error('Erro ao salvar produto.');
     } finally {
       setIsSubmitting(false);
     }
@@ -134,15 +165,23 @@ export function ProductModal({ isOpen, onClose, productToEdit }: ProductModalPro
           </div>
 
           <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-400 tracking-wider">URL DA IMAGEM PRINCIPAL</label>
-            <input
-              required
-              type="url"
-              value={formData.image}
-              onChange={(e) => setFormData({ ...formData, image: e.target.value })}
-              className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#9D4EDD] transition-colors"
-              placeholder="https://..."
-            />
+            <label className="text-sm font-medium text-gray-400 tracking-wider">FOTO DO PRODUTO (Upload via Firebase)</label>
+            <div className="flex items-center space-x-4">
+              {formData.image && (
+                <img src={formData.image} alt="Preview" className="w-16 h-16 rounded-xl object-cover border border-white/10" />
+              )}
+              <label className="flex-1 cursor-pointer flex flex-col items-center justify-center p-4 border-2 border-dashed border-white/20 rounded-xl hover:bg-white/5 hover:border-[#9D4EDD] transition-colors">
+                <UploadCloud className="w-6 h-6 text-gray-400 mb-2" />
+                <span className="text-sm text-gray-400">{isUploading ? 'Enviando...' : 'Clique para escolher a foto'}</span>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageUpload}
+                  className="hidden"
+                  disabled={isUploading}
+                />
+              </label>
+            </div>
           </div>
 
           <div className="space-y-2">
@@ -197,14 +236,14 @@ export function ProductModal({ isOpen, onClose, productToEdit }: ProductModalPro
             <button
               type="button"
               onClick={onClose}
-              disabled={isSubmitting}
+              disabled={isSubmitting || isUploading}
               className="px-6 py-3 rounded-lg font-semibold text-gray-400 hover:text-white hover:bg-white/5 transition-colors"
             >
               CANCELAR
             </button>
             <button
               type="submit"
-              disabled={isSubmitting}
+              disabled={isSubmitting || isUploading}
               className="px-6 py-3 rounded-lg font-semibold text-white bg-[#9D4EDD] hover:bg-[#9D4EDD]/80 transition-colors disabled:opacity-50"
             >
               {isSubmitting ? 'SALVANDO...' : 'SALVAR PRODUTO'}
